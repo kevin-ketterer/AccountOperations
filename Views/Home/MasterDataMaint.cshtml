@@ -1,0 +1,40 @@
+﻿@using AccountOperations.Models;
+@model List<Projects>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form>
+    <h2> Test Form Header</h2>
+    <div>
+        <select id="sMasterData">
+            <option>Select an option...</option>
+            <option>Project</option>
+            <option>Something else</option>
+
+        </select>
+        Type text here: <input id="testtext" type="text" />
+        Click Button: <input id="testButton" type="button" value="Click me"/>
+    </div>
+
+<table>
+    <thead>
+        <tr>
+            <th>project Id</th>
+            <th>project Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => x[i].projectId)</td>
+                <td>@Html.DisplayFor(x => x[i].projectName)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</form>
