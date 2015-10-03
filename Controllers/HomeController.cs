@@ -31,9 +31,40 @@ namespace AccountOperations.Controllers
         public ActionResult MasterDataMaint()
         {
             ViewBag.Message = "Master Data Maintenance.";
-            
-            IList<Projects> ProjectsList = GetProjects().ToList();
-            return View(ProjectsList);
+            List<MenuFields> MenuFieldsList = GetMenuFields("Master Data Maintenance", "Master Data");
+            List<Projects> ProjectsList = GetProjects();
+            return View(MenuFieldsList);
+        }
+
+        public List<MenuFields> GetMenuFields(String menuName, String fieldName)
+        {
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["accountOpsConn"].ConnectionString;
+            List<MenuFields> MenuFieldsList = new List<MenuFields>();
+
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = conn.CreateCommand())
+            {
+                conn.Open();
+                cmd.CommandText = String.Format(DBQueries.GetMasterMenuLov,menuName, fieldName);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        MenuFields temp = new MenuFields();
+
+                        temp.menuName = reader.GetString(reader.GetOrdinal("MENU_NM"));
+                        temp.fieldName = reader.GetString(reader.GetOrdinal("FIELD_NM"));
+                        temp.seqNumber = reader.GetInt32(reader.GetOrdinal("LOV_SEQ_NBR"));
+                        temp.lovDesc = reader.GetString(reader.GetOrdinal("LOV_DESC"));
+                        temp.lastUpdatedBy = reader.GetInt32(reader.GetOrdinal("LAST_UPD_BY"));
+                        temp.lastUpdatedTime = reader.GetDateTime(reader.GetOrdinal("LAST_UPD_TS"));
+
+                        MenuFieldsList.Add(temp);
+
+                    };
+                }
+            }
+            return MenuFieldsList;
         }
 
         public List<Projects> GetProjects()

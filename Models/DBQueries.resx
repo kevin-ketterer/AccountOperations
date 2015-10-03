@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="GetMasterMenuLov" xml:space="preserve">
+    <value>SELECT menu_nm, field_nm, lov_seq_nbr, lov_desc, last_upd_by, last_upd_ts where menu_nm='{0}', field_nm='{1}' order by lov_seq_nbr asc</value>
+    <comment>Get master menu list of values</comment>
+  </data>
   <data name="GetProjects" xml:space="preserve">
     <value>SELECT proj_id, proj_nm, proj_desc, proj_beg_dt, proj_end_dt, last_upd_by, last_upd_ts from MSTR_PROJ</value>
     <comment>Get master data - projects</comment>

@@ -61,6 +61,15 @@ namespace AccountOperations.Models {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT menu_nm, field_nm, lov_seq_nbr, lov_desc, last_upd_by, last_upd_ts where menu_nm=&apos;{0}&apos;, field_nm=&apos;{1}&apos; order by lov_seq_nbr asc.
+        /// </summary>
+        internal static string GetMasterMenuLov {
+            get {
+                return ResourceManager.GetString("GetMasterMenuLov", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT proj_id, proj_nm, proj_desc, proj_beg_dt, proj_end_dt, last_upd_by, last_upd_ts from MSTR_PROJ.
         /// </summary>
         internal static string GetProjects {

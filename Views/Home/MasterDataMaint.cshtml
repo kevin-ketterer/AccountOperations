@@ -1,6 +1,6 @@
 ﻿@using AccountOperations.Models;
-@model List<Projects>
-
+@*@model List<Projects>*@
+@model List<MenuFields>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,6 +9,8 @@
 <form>
     <h2> Test Form Header</h2>
     <div>
+        @Html.DropDownListFor(m => Model., new SelectList(Model,"CoutryID", "Value"));
+
         <select id="sMasterData">
             <option>Select an option...</option>
             <option>Project</option>
